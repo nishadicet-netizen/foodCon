@@ -1,0 +1,39 @@
+{% include 'public_header.html' %}
+{% load static %}
+
+<!-- ======= Hero Section ======= -->
+<section style="height: 89vh; background-image: url('static/assets/img/about-2.jpg'); background-size: cover; background-position: center;" id="hero" class="hero d-flex align-items-center section-bg">
+  <div class="container">
+    <div class="row justify-content-between gy-5">
+      <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+        <form method="post">
+          <center>
+            <h1 style="color: black;">LOGIN</h1>
+            <table class="table" style="width: 500px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+              <tr>
+                <th style="color: black;">Username</th>
+                <td><input type="text" placeholder="enter username" class="form-control" required="" name="uname"></td>
+              </tr>
+              <tr>
+                <th style="color: black;">Password</th>
+                <td><input type="password" placeholder="enter password" class="form-control" required="" name="pword"></td>
+              </tr>
+              <tr>
+                <td align="center" colspan="2"><input type="submit" value="login" class="btn btn-danger btn-lg" name="submit"></td>
+              </tr>
+            </table>
+          </center>
+        </form>
+        <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+          <!-- <a href="#book-a-table" class="btn-book-a-table" style="color: white;">Book a Table</a> -->
+          <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center" style="color: white;"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+        </div>
+      </div>
+      <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+        <!-- You can remove the img tag here since the background image is set in the CSS -->
+      </div>
+    </div>
+  </div>
+</section><!-- End Hero Section -->
+
+{% include 'footer.html' %}

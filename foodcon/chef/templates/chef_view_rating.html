@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Chef Rating Page</title>
+
+  <!-- Add your custom styles here -->
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      color: #495057;
+    }
+
+    .stats-counter {
+      padding: 80px 0;
+      background-color: #2c3e50; /* Change the background color as needed */
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    h1 {
+      color: white;
+    }
+
+    form {
+      margin-top: 30px;
+    }
+
+    .card {
+      width: 80%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      margin-bottom: 30px;
+      background-color: #fff; /* Change the background color as needed */
+    }
+
+    table {
+      width: 100%;
+      color: #495057;
+    }
+
+    table th,
+    table td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #2c3e50; /* Change the background color as needed */
+      color: white;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Add any additional styles specific to this page below */
+    /* For example, if you want to override or add styles for a specific element on this page */
+
+  </style>
+  <!-- End custom styles -->
+
+</head>
+
+<body>
+
+  <!-- Your existing HTML code for the Chef Rating page -->
+
+  {% include 'chef_header.html' %}
+  <!-- ======= Stats Counter Section ======= -->
+  <section style="height:300px" id="stats-counter" class="stats-counter">
+    <div class="container" data-aos="zoom-out">
+      <br><br><br>
+      <h1 align="center" style="color: white;">Rating</h1>
+      <div class="row gy-4"></div>
+    </div>
+  </section><!-- End Stats Counter Section -->
+
+  <center>
+    <br><br><br><br>
+  
+    <div class="card">
+      <table class="table">
+        <tr>
+          <th style="background-color: #34495e; color: white;">Slno</th>
+          <th style="background-color: #34495e; color: white;">Rating</th>
+          <th style="background-color: #34495e; color: white;">Review</th>
+          <th style="background-color: #34495e; color: white;">Date</th>
+        </tr>
+  
+        {% for row in data.rating %}
+        <tr>
+          <td>{{ forloop.counter }}</td> <!-- Use forloop.counter instead of loop.index -->
+          <td>{{ row.rated }}</td>
+          <td>{{ row.review }}</td>
+          <td>{{ row.date }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </center>
+  
+
+  <br><br><br>
+  {% include 'footer.html' %}
+
+</body>
+
+</html>

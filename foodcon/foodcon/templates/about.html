@@ -1,0 +1,117 @@
+
+{% include 'public_header.html' %}
+{% load static %}
+<main class="main">
+
+    
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height: 89vh; background-image: url('static/assets/img/logo.jfif'); background-size: cover; background-position: center;" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up" style="color: white;">Enjoy Your Healthy<br>Delicious Food</h2>
+          <p data-aos="fade-up" data-aos-delay="100" style="color: white;">A Recipe Has No Soul. You As The Cook, Must Bring Soul To The Recipe.</p>
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <!-- <a href="#book-a-table" class="btn-book-a-table" style="color: white;">Book a Table</a> -->
+            <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center" style="color: white;"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <!-- You can remove the img tag here since the background image is set in the CSS -->
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+       <!-- ======= About Section ======= -->
+       <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-header">
+            <p>Learn More <span>About Us</span></p>
+          </div>
+  
+          <div class="row gy-4">
+            <div class="col-lg-7 position-relative about-img" style="background-image: url(/static/assets/img/uabout.jpg) ;" data-aos="fade-up" data-aos-delay="150">
+            </div>
+            <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+              <div class="content ps-0 ps-lg-5">
+                <p class="fst-italic">
+                  Welcome to FoodCon, the ultimate platform for food enthusiasts, home cooks, and health-conscious individuals! At FoodCon, we believe that cooking should be a fun, engaging, and personalized experience for everyone, no matter their skill level or dietary preferences.
+                </p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i>As a user of FoodCon, you have access to a vast collection of recipes tailored to your tastes and nutritional needs, thanks to our smart recommendation system.</li>
+                  <li><i class="bi bi-check2-all"></i> Whether you’re looking for a quick weekday meal, a gourmet dish, or a diet-friendly recipe.</li>
+                  <li><i class="bi bi-check2-all"></i>Our platform offers interactive features like real-time chat assistance to help you cook with confidence.</li>
+                </ul>
+                <p>
+                  FoodCon has something for everyone. But we’re more than just a recipe platform. Here, you can connect with other food lovers,
+                   share your culinary creations, exchange tips, and contribute to our vibrant community.Join us on this flavorful journey, and discover the joy of cooking and sharing through FoodCon!
+                </p>
+  
+                <div class="position-relative mt-4">
+                  <img src="/static/assets/img/about-2.jpg" class="img-fluid" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </section><!-- End About Section -->
+  
+      <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="why-box">
+              <h3>Why Choose FoodCon?</h3>
+              <p>
+                FoodCon stands out by offering personalized recipe suggestions and diet plans tailored to individual preferences and dietary restrictions, thanks to machine learning algorithms. This unique feature ensures users get content that is relevant and suited to their tastes and health needs.
+
+              </p>
+              <div class="text-center">
+                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Why Box -->
+
+          <div class="col-lg-8 d-flex align-items-center">
+            <div class="row gy-4">
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-clipboard-data"></i>
+                  <h4>Community and Social Engagement</h4>
+                  <p>FoodCon fosters a vibrant food-loving community where users can share recipes, tips, and culinary experiences</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-gem"></i>
+                  <h4>Real-Time Assistance</h4>
+                  <p>The platform offers real-time chatbot support, helping users with step-by-step instructions during cooking</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-inboxes"></i>
+                  <h4>Health and Wellness Focus</h4>
+                  <p>Health-conscious individuals by offering diet plans that align with their wellness goals</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+  
+  </main>
+
+  {% include 'footer.html' %}

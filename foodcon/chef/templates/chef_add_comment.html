@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Add your other head elements here -->
+
+    <style>
+        /* Add Card View CSS */
+        .comment-card {
+            
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-card h1 {
+            color: #333;
+        }
+
+        .comment-card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .comment-card th, .comment-card td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .comment-card th {
+            background-color: #f2f2f2;
+        }
+
+        /* Facebook-like Style */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5; /* Set your desired background color */
+        }
+
+        /* Add other Facebook-like styles as needed */
+
+    </style>
+</head>
+
+<body>
+
+    {% include 'chef_header.html' %}
+    <!-- ======= Stats Counter Section ======= -->
+    <section id="stats-counter" class="stats-counter">
+        <div class="container" data-aos="zoom-out">
+            <div class="row gy-4">
+                <center>
+                    <br><br>
+                    <center>
+                        <form method="post">
+                            <div class="comment-card">
+                                <h1>Add Comment</h1>
+                                <table class="table" style="width:900px;color:white">
+                                    <tr>
+                                        <th>Comment</th>
+                                        <td><input type="text" name="comment" required="" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" colspan="2"><input type="submit" name="submit" value="Submit"
+                                                class="btn btn-danger"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+                    </center>
+                </div>
+            </div>
+    </section><!-- End Stats Counter Section -->
+    <br><br><br>
+    <center>
+        <div class="comment-card">
+            <h1>Comments</h1>
+            <table class="table" style="width:1200px">
+                <tr>
+                    <th>Slno</th>
+                    <th>Chef Name</th>
+                    <th>Comment</th>
+                    <th>Date</th>
+                </tr>
+                {% for row in data.comment %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ row.fname }} {{ row.lname }}</td>
+                    <td>{{ row.comment }}</td>
+                    <td>{{ row.date }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </center>
+    
+    <br><br><br>
+    {% include 'footer.html' %}
+
+</body>
+
+</html>

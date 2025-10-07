@@ -1,0 +1,50 @@
+{% include 'admin_header.html' %}
+<!-- ======= Stats Counter Section ======= -->
+<section style="height:300px" id="stats-counter" class="stats-counter">
+  <div class="container" data-aos="zoom-out">
+    <br><br><br>
+    <h1  align="center" style="color:white;"> Chefs</h1>
+    <div class="row gy-4"></div>
+  </div>
+</section><!-- End Stats Counter Section -->
+
+<form method="post">
+  <center>
+    <br><br><br>
+
+    <div class="card" style="width: 1200px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+      <div class="card-body">
+        <table class="table table-bordered table-hover">
+          <thead style="background-color: #f8f9fa; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <tr>
+              <th style="color: #343a40;">Slno</th>
+              <th style="color: #343a40;">Chef Name</th>  <!-- Changed Chef_Name to Chef Name -->
+              <th style="color: #343a40;">Place</th>
+              <th style="color: #343a40;">Phone</th>
+              <th style="color: #343a40;">Email</th>
+              <th style="color: #343a40;">Designation</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in data.chef %}  <!-- Changed from data['chef'] to data.chef -->
+            <tr>
+              <td>{{ forloop.counter }}</td>  <!-- Use forloop.counter instead of loop.index -->
+              <td>{{ row.fname }} {{ row.lname }}</td>  <!-- Dot notation for accessing dictionary values -->
+              <td>{{ row.place }}</td>
+              <td>{{ row.phone }}</td>
+              <td>{{ row.email }}</td>
+              <td>{{ row.designation }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+</center>
+
+</form>
+
+<br><br><br><br><br>
+
+{% include 'footer.html' %}

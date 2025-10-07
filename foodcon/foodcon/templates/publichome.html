@@ -1,0 +1,498 @@
+{% include 'public_header.html' %}
+{% load static %}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height: 89vh; background-image: url('static/assets/img/logo.jfif'); background-size: cover; background-position: center;" class="hero d-flex align-items-center section-bg">
+  <div class="container">
+    <div class="row justify-content-between gy-5">
+      <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+        <h2 data-aos="fade-up" style="color: white;">Enjoy Your Healthy<br>Delicious Food</h2>
+        <p data-aos="fade-up" data-aos-delay="100" style="color: white;">A Recipe Has No Soul. You As The Cook, Must Bring Soul To The Recipe.</p>
+        <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+          <!-- <a href="#book-a-table" class="btn-book-a-table" style="color: white;">Book a Table</a> -->
+          <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center" style="color: white;"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+        </div>
+      </div>
+      <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+        <!-- You can remove the img tag here since the background image is set in the CSS -->
+      </div>
+    </div>
+  </div>
+</section><!-- End Hero Section -->
+
+
+<section id="menu" class="menu">
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <p>Check Our Menu</p>
+    </div>
+
+    <!-- Live Search Input -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search by recipe or ingredients..." onkeyup="liveSearch()">
+    </div>
+
+    <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+      <div class="tab-pane fade active show" id="menu-starters">
+        <div class="tab-header text-center">
+          
+        </div>
+
+        <div class="row gy-5" id="menu-items">
+          {% for recipe in data.view %}
+            <div class="col-lg-4 menu-item">
+              <a href="/{{ recipe.image}}" class="glightbox">
+                <img src="/{{ recipe.image}}" class="menu-img img-fluid" alt="" style="width: 350px;height: 200px;">
+              </a>
+              <div class="post-info">{{ recipe.fname }} {{ recipe.lname }}</div>
+              <h4 class="recipe-name">{{ recipe.receipe }}</h4>
+              
+              <!-- Display first two lines of ingredients and details -->
+              <p class="ingredients">
+                {{ recipe.incridients|truncate(100) }}
+              </p>
+              <!--<a href="#" style="color: blue;" onclick="openModal('{{ recipe.receipe }}', '{{ recipe.incridients }}', '{{ recipe.details }}')">Read More</a> -->
+            
+              <p class="price">
+                {{ recipe.details|truncate(100) }}
+              </p>
+              
+              <!-- Read More Link -->
+              <a href="#" onclick="openModal('{{ recipe.receipe }}', '{{ recipe.incridients }}', '{{ recipe.details }}')" style="color: blue;">Read More</a> 
+            </div><!-- Menu Item -->
+          {% endfor %}
+        </div>
+      </div><!-- End Starter Menu Content -->
+    </div>
+  </div>
+</section><!-- End Menu Section -->
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="recipeModalLabel">Recipe Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4 id="modalRecipeName"></h4>
+        <div class="scrollable-content" style="max-height: 300px; overflow-y: auto;">
+          <p><strong>Ingredients:</strong></p>
+          <p id="modalIngredients"></p>
+          <p><strong>Details:</strong></p>
+          <p id="modalDetails"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript Function -->
+<script>
+  function openModal(recipeName, ingredients, details) {
+    // Set modal content
+    document.getElementById('modalRecipeName').textContent = recipeName;
+    document.getElementById('modalIngredients').textContent = ingredients;
+    document.getElementById('modalDetails').textContent = details;
+
+    // Show the modal
+    let recipeModal = new bootstrap.Modal(document.getElementById('recipeModal'));
+    recipeModal.show();
+  }
+</script>
+
+
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="why-box">
+              <h3>Why Choose FoodCon?</h3>
+              <p>
+                FoodCon stands out by offering personalized recipe suggestions and diet plans tailored to individual preferences and dietary restrictions, thanks to machine learning algorithms. This unique feature ensures users get content that is relevant and suited to their tastes and health needs.
+
+              </p>
+              <div class="text-center">
+                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Why Box -->
+
+          <div class="col-lg-8 d-flex align-items-center">
+            <div class="row gy-4">
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-clipboard-data"></i>
+                  <h4>Community and Social Engagement</h4>
+                  <p>FoodCon fosters a vibrant food-loving community where users can share recipes, tips, and culinary experiences</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-gem"></i>
+                  <h4>Real-Time Assistance</h4>
+                  <p>The platform offers real-time chatbot support, helping users with step-by-step instructions during cooking</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-inboxes"></i>
+                  <h4>Health and Wellness Focus</h4>
+                  <p>Health-conscious individuals by offering diet plans that align with their wellness goals</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Feedbacks</h2>
+          <p>What Are They <span>Saying About Us</span></p>
+        </div>
+
+        <div class="slides-1 swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        I love how FoodCon personalizes the recipes based on my preferences. I don’t have to spend time searching for dishes that match my dietary needs; the suggestions are always spot-on. It makes meal planning so much easier.
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Saul Goodman</h3>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <img src="/static/assets/img/testimonials/testimonials-1.jpg" class="img-fluid testimonial-img" alt="">
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        The chatbot feature has been a lifesaver! I was unsure about a recipe once, and the chatbot helped me with substitutes for ingredients I didn’t have. It’s like having a personal assistant in the kitchen, and it’s made cooking fun and stress-free.
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Sara Wilsson</h3>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <img src="/static/assets/img/testimonials/testimonials-2.jpg" class="img-fluid testimonial-img" alt="">
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        The platform isn’t just about recipes; it’s about community. I love reading the blogs, sharing my own, and engaging with other food lovers. It’s great to learn from others’ experiences and to share my own tips and ideas.
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Jena Karlis</h3>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <img src="/static/assets/img/testimonials/testimonials-3.jpg" class="img-fluid testimonial-img" alt="">
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        I’m following a specific diet, and FoodCon makes it so easy to stick to it. The personalized meal plans consider my health goals, and the expert advice gives me confidence that I’m eating right. It’s a perfect mix of delicious and nutritious.
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>John Larson</h3>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <img src="/static/assets/img/testimonials/testimonials-4.jpg" class="img-fluid testimonial-img" alt="">
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Chefs Section ======= -->
+    <section id="chefs" class="chefs section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Chefs</h2>
+          <p>Our <span>Proffesional</span> Chefs</p>
+        </div>
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="chef-member">
+              <div class="member-img">
+                <img src="/static/assets/img/chefs/chefs-1.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Walter White</h4>
+                <p>The role of the chef is central to the success and quality of content on FoodCon. Professional chefs are responsible for creating and sharing high-quality, unique recipes that elevate the platform's culinary offerings.</p>
+              </div>
+            </div>
+          </div><!-- End Chefs Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="chef-member">
+              <div class="member-img">
+                <img src="/static/assets/img/chefs/chefs-2.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Sarah Jhonson</h4>
+                <p>Their expertise ensures that users have access to a diverse range of dishes, from gourmet meals to simple, everyday cooking ideas..</p>
+              </div>
+            </div>
+          </div><!-- End Chefs Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+            <div class="chef-member">
+              <div class="member-img">
+                <img src="/static/assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>William Anderson</h4>
+                <p>Chefs also contribute expert tips, cooking techniques, and ingredient insights that help both beginners and experienced cooks enhance their skills in the kitchen..</p>
+              </div>
+            </div>
+          </div><!-- End Chefs Member -->
+
+        </div>
+
+      </div>
+    </section><!-- End Chefs Section -->
+     
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>gallery</h2>
+          <p>Check <span>Our Gallery</span></p>
+        </div>
+
+        <div class="gallery-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="/static/assets/img/gallery/ugallery-1.jpg"><img src="/static/assets/img/gallery/ugallery-1.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="/static/assets/img/gallery/ugallery-2.jpg"><img src="/static/assets/img/gallery/ugallery-2.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="/static/assets/img/gallery/ugallery-3.jpg"><img src="/static/assets/img/gallery/ugallery-3.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="/static/assets/img/gallery/ugallery-4.jpg"><img src="/static/assets/img/gallery/ugallery-4.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="/static/assets/img/gallery/ugallery-5.jpg"><img src="/static/assets/img/gallery/ugallery-5.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="/static/assets/img/gallery/ugallery-6.jpg"><img src="/static/assets/img/gallery/ugallery-6.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="/static/assets/img/gallery/ugallery-7.jpg"><img src="/static/assets/img/gallery/ugallery-7.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="/static/assets/img/gallery/ugallery-8.jpg"><img src="/static/assets/img/gallery/ugallery-8.jpg" class="img-fluid" alt=""></a></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Contact</h2>
+          <p>Need Help? <span>Contact Us</span></p>
+        </div>
+
+        <div class="row gy-4">
+
+          <div class="col-md-6">
+            <div class="info-item  d-flex align-items-center">
+              <i class="icon bi bi-map flex-shrink-0"></i>
+              <div>
+                <h3>Our Address</h3>
+                <p>Kerala,Eranakulam 682011</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-md-6">
+            <div class="info-item d-flex align-items-center">
+              <i class="icon bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>nish@example.com</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-md-6">
+            <div class="info-item  d-flex align-items-center">
+              <i class="icon bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>+9177367714342</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-md-6">
+            <div class="info-item  d-flex align-items-center">
+              <i class="icon bi bi-share flex-shrink-0"></i>
+              <div>
+                <h3>Share</h3>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+        </div>
+
+        <form id="contact-form" class="php-email-form p-3 p-md-4" onsubmit="handleFormSubmit(event)">
+          <div class="row">
+            <div class="col-xl-6 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="col-xl-6 form-group">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+          </div>
+          <div class="my-3">
+            <div class="loading" style="display:none;">Loading...</div>
+            <!-- <div class="error-message" style="display:none;">There was an error sending your message.</div> -->
+            <div class="sent-message" style="display:none;">Your message has been sent. We Will Connect YoU Shortly Thank you!</div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-outline-danger">Send Message</button>
+
+
+          </div>
+        </form>
+        
+        <script type="text/javascript">
+          function handleFormSubmit(event) {
+            event.preventDefault();  // Prevents the form from refreshing the page
+        
+            // Show loading message
+            document.querySelector('.loading').style.display = 'block';
+        
+            // Simulate form processing with a timeout
+            setTimeout(function() {
+              // Hide loading message
+              document.querySelector('.loading').style.display = 'none';
+        
+              // Show success message
+              document.querySelector('.sent-message').style.display = 'block';
+        
+              // Optionally, you could also clear the form
+              document.getElementById('contact-form').reset();
+            }, 1000); // Simulate a delay of 1 second
+          }
+        </script>
+        
+
+      </div>
+    </section><!-- End Contact Section -->
+
+{% include 'footer.html' %}
+<script>
+  function liveSearch() {
+    // Get the input field and its value
+    let input = document.getElementById('searchInput');
+    let filter = input.value.toLowerCase();
+    
+    // Get all menu items
+    let menuItems = document.getElementsByClassName('menu-item');
+  
+    // Loop through the menu items
+    for (let i = 0; i < menuItems.length; i++) {
+      // Get recipe name and ingredients
+      let recipeName = menuItems[i].getElementsByClassName('recipe-name')[0];
+      let ingredients = menuItems[i].getElementsByClassName('ingredients')[0];
+  
+      // Check if the text matches the search input
+      if (recipeName.innerHTML.toLowerCase().indexOf(filter) > -1 || 
+          ingredients.innerHTML.toLowerCase().indexOf(filter) > -1) {
+        menuItems[i].style.display = "";
+      } else {
+        menuItems[i].style.display = "none";
+      }
+    }
+  }
+  
+</script>

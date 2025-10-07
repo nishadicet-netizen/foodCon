@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin Page</title>
+
+  <!-- Add your custom styles here -->
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      color: #495057;
+    }
+
+    .card {
+      width: 1200px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      margin-bottom: 30px;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    table th,
+    table td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      color: #343a40;
+      background-color: #f8f9fa;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .btn {
+      text-decoration: none;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+    }
+
+    /* Add any additional styles specific to this page below */
+    /* For example, if you want to override or add styles for a specific element on this page */
+
+  </style>
+  <!-- End custom styles -->
+
+</head>
+
+<body>
+
+  <!-- Your existing HTML code for the Complaints page -->
+
+  {% include 'admin_header.html' %}
+  <!-- ======= Stats Counter Section ======= -->
+  <section style="height:300px" id="stats-counter" class="stats-counter">
+    <div class="container" data-aos="zoom-out">
+      <br><br><br>
+      <h1 align="center" style="color: white;">Complaints</h1>
+      <div class="row gy-4"></div>
+    </div>
+  </section>
+
+  <center>
+    <br><br><br><br>
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Slno.</th>
+                    <th>Username</th>
+                    <th>Complaint</th>
+                    <th>Reply</th>  <!-- Corrected "Replay" to "Reply" -->
+                    <th>Date</th>
+                </tr>
+                {% for row in data.complaint %}  <!-- Changed from data['complaint'] to data.complaint -->
+                <tr>
+                    <td>{{ forloop.counter }}</td>  <!-- Use forloop.counter for indexing -->
+                    <td>{{ row.fname }} {{ row.lname }}</td>  <!-- Changed dictionary access to attribute style -->
+                    <td>{{ row.complaint }}</td>
+                    {% if row.replay == "pending" %}  <!-- Changed dictionary access to attribute style -->
+                    <td><a href="{% url 'admin_send_replay' id=row.complaint_id %}" class="btn btn-danger">Reply Send</a></td>
+                    {% else %}
+                    <td>{{ row.replay }}</td>
+                    {% endif %}
+                    <td>{{ row.date }}</td>  <!-- Changed dictionary access to attribute style -->
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</center>
+
+
+  <br><br><br><br><br><br><br><br>
+
+  {% include 'footer.html' %}
+
+</body>
+
+</html>

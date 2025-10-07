@@ -1,0 +1,130 @@
+
+{% include 'public_header.html' %}
+{% load static %}
+<main class="main">
+
+    
+<!-- ======= Hero Section ======= -->
+<section id="hero" style="height: 89vh; background-image: url('static/assets/img/logo.jfif'); background-size: cover; background-position: center;" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up" style="color: white;">Enjoy Your Healthy<br>Delicious Food</h2>
+          <p data-aos="fade-up" data-aos-delay="100" style="color: white;">A Recipe Has No Soul. You As The Cook, Must Bring Soul To The Recipe.</p>
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <!-- <a href="#book-a-table" class="btn-book-a-table" style="color: white;">Book a Table</a> -->
+            <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center" style="color: white;"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <!-- You can remove the img tag here since the background image is set in the CSS -->
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+
+      <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Contact</h2>
+          <p>Need Help? <span>Contact Us</span></p>
+        </div>
+
+        <div class="row gy-4">
+
+          <div class="col-md-6">
+            <div class="info-item  d-flex align-items-center">
+              <i class="icon bi bi-map flex-shrink-0"></i>
+              <div>
+                <h3>Our Address</h3>
+                <p>Kerala,Eranakulam 682011</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-md-6">
+            <div class="info-item d-flex align-items-center">
+              <i class="icon bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>nish@example.com</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-md-6">
+            <div class="info-item  d-flex align-items-center">
+              <i class="icon bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>+9177367714342</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-md-6">
+            <div class="info-item  d-flex align-items-center">
+              <i class="icon bi bi-share flex-shrink-0"></i>
+              <div>
+                <h3>Share</h3>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+            
+  
+          </div>
+  
+          <form id="contact-form" class="php-email-form p-3 p-md-4" onsubmit="handleFormSubmit(event)">
+            <div class="row">
+              <div class="col-xl-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="col-xl-6 form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading" style="display:none;">Loading...</div>
+              <!-- <div class="error-message" style="display:none;">There was an error sending your message.</div> -->
+              <div class="sent-message" style="display:none;">Your message has been sent. We Will Connect YoU Shortly Thank you!</div>
+            </div>
+            <div class="text-center">
+              <button type="submit">Send Message</button>
+            </div>
+          </form>
+          
+          <script type="text/javascript">
+            function handleFormSubmit(event) {
+              event.preventDefault();  // Prevents the form from refreshing the page
+          
+              // Show loading message
+              document.querySelector('.loading').style.display = 'block';
+          
+              // Simulate form processing with a timeout
+              setTimeout(function() {
+                // Hide loading message
+                document.querySelector('.loading').style.display = 'none';
+          
+                // Show success message
+                document.querySelector('.sent-message').style.display = 'block';
+          
+                // Optionally, you could also clear the form
+                document.getElementById('contact-form').reset();
+              }, 1000); // Simulate a delay of 1 second
+            }
+          </script>
+          
+  
+        </div>
+      </section><!-- End Contact Section -->
+  </main>
+
+  {% include 'footer.html' %}

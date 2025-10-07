@@ -1,0 +1,47 @@
+{% include 'admin_header.html' %}
+<!-- ======= Stats Counter Section ======= -->
+<section style="height: 300px" id="stats-counter" class="stats-counter">
+  <div class="container" data-aos="zoom-out">
+    <br><br><br>
+    <h1 align="center" style="color: white;">Users</h1>
+    <div class="row gy-4"></div>
+  </div>
+</section><!-- End Stats Counter Section -->
+
+<form method="post">
+  <center>
+    <br><br><br>
+  
+    <div class="card" style="width: 1200px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+      <div class="card-body">
+        <table class="table table-bordered table-hover">
+          <thead style="background-color: #f8f9fa; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <tr>
+              <th style="color: #343a40;">Slno</th>
+              <th style="color: #343a40;">User Name</th>
+              <th style="color: #343a40;">Place</th>
+              <th style="color: #343a40;">Phone</th>
+              <th style="color: #343a40;">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in data.user %}  <!-- Changed from data['user'] to data.user -->
+            <tr>
+              <td>{{ forloop.counter }}</td>  <!-- Use forloop.counter for indexing -->
+              <td>{{ row.fname }} {{ row.lname }}</td>  <!-- Changed to attribute style -->
+              <td>{{ row.place }}</td>  <!-- Changed to attribute style -->
+              <td>{{ row.phone }}</td>  <!-- Changed to attribute style -->
+              <td>{{ row.email }}</td>  <!-- Changed to attribute style -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </center>
+  
+</form>
+
+<br><br><br><br><br>
+
+{% include 'footer.html' %}

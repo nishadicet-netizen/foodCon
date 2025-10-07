@@ -1,0 +1,42 @@
+{% include 'chef_header.html' %}
+<!-- ======= Stats Counter Section ======= -->
+<section style="height:300px" id="stats-counter" class="stats-counter">
+  <div class="container" data-aos="zoom-out">
+    <br><br><br>
+    <h1 align="center" style="color:white;">Recepie Details</h1>
+    <div class="row gy-4"></div>
+  </div>
+</section><!-- End Stats Counter Section -->
+
+<br><br><br>
+<center>
+  <div class="container">
+    <table class="table table-bordered" style="max-width: 1200px;">
+      <tr>
+        <th style="background-color: #3498db; color: white;">Slno</th>
+        <th style="background-color: #3498db; color: white;">Details</th>
+        <th style="background-color: #3498db; color: white;">Ingredients</th>
+        <th style="background-color: #3498db; color: white;">Video</th>
+        <th style="background-color: #3498db; color: white;">Date</th>
+      </tr>
+
+      {% for row in data.recepie %}
+      <tr>
+        <td>{{ forloop.counter }}</td>  <!-- Use forloop.counter instead of loop.index -->
+        <td>{{ row.details }}</td>       <!-- Dot notation for accessing dictionary values -->
+        <td>{{ row.incridients }}</td>   <!-- Dot notation for accessing dictionary values -->
+        <td>
+          <video width="320" height="240" controls>
+            <source src="/{{ row.video }}" type="video/mp4">
+          </video>
+        </td>
+        <td>{{ row.date }}</td>           <!-- Dot notation for accessing dictionary values -->
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</center>
+
+
+<br><br><br>
+{% include 'footer.html' %}

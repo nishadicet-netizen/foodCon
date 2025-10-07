@@ -1,0 +1,103 @@
+{%include 'chef_header.html'%}
+<!-- ======= Stats Counter Section ======= -->
+<section id="stats-counter" class="stats-counter">
+  <div class="container" data-aos="zoom-out">
+
+    <div class="row gy-4">
+      <center>
+        <br><br>
+        <form method="post" enctype="multipart/form-data">
+             <h1 style="color:white;">Upload Recipes </h1>
+          <div class="card" style="width: 900px; background-color: rgba(255, 255, 255, 0.1);">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                
+                  <div class="mb-3">
+                    <label for="receipe" class="form-label" style="color:white;">Recipes </label>
+                    <input type="text" name="receipe" required="" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label for="detail" class="form-label" style="color:white;">Details</label>
+                    <input type="text" name="detail" required="" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label for="incridient" class="form-label" style="color:white;">Incridient</label>
+                    <input type="text" name="incridient" required="" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="img" class="form-label" style="color:white;">Image</label>
+                    <input type="file" name="img" required="" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label for="video" class="form-label" style="color:white;">Video</label>
+                    <input type="file" name="video" required="" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 text-center">
+                <input type="submit" name="submit" class="btn btn-danger">
+              </div>
+            </div>
+          </div>
+        </form>
+      </center>
+    </div>
+
+  </div>
+</section><!-- End Stats Counter Section -->
+<br><br>
+<center>
+  <h1 style="color: white;">Recipe</h1>
+  <div class="card" style="width: 100%;">
+    <div class="card-body">
+      <table class="table table-bordered" style="color: black;">
+        <thead>
+          <tr>
+            <th style="color: blue;">Slno</th>
+            <th style="color: blue;">Recipe</th>
+            <th style="color: blue;">Details</th>
+            <th style="color: blue;">Ingredients</th>
+            <th style="color: blue;">Image</th>
+            <th style="color: blue;">Video</th>
+            <th style="color: blue;">Date</th>
+            <th style="color: blue;">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for row in data.receipe %}
+          <tr>
+            <td style="color: black;">{{ forloop.counter }}</td>
+            <td style="color: black;">{{ row.receipe }}</td>
+            <td style="color: black;">{{ row.details }}</td>
+            <td style="color: black;">{{ row.incridients }}</td>
+            <td style="color: black;"><img src="/{{ row.image }}" height="120" width="120"></td>
+            <td style="color: black;">
+              <video width="320" height="240" controls>
+                <source src="/{{ row.video }}" type="video/mp4">
+              </video>
+            </td>
+            <td style="color: black;">{{ row.date }}</td>
+            <td style="color: black;">
+              <a href="{% url 'chef_view_rating' row.receipe_id %}" class="btn btn-danger">View Rating</a>
+              <br>
+              <br>
+              <a href="{% url 'chef_view_comment' row.receipe_id %}" class="btn btn-info">View Other Chef Comments</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</center>
+
+
+
+
+
+<br><br><br>
+{%include 'footer.html'%}

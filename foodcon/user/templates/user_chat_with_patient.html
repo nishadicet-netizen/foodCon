@@ -1,0 +1,126 @@
+{% include 'user_header.html' %}
+<style type="text/css">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f9f9f9;
+			margin: 0;
+			padding: 0;
+		}
+	
+		h1 {
+			color: #333;
+			margin-bottom: 20px;
+		}
+	
+		.container {
+			width: 80%;
+			margin: auto;
+			padding: 20px;
+		}
+	
+		.table {
+			width: 100%;
+			margin-bottom: 20px;
+			border-collapse: collapse;
+		}
+	
+		.table th, .table td {
+			padding: 12px 15px;
+			border: 1px solid #ddd;
+			text-align: left;
+		}
+	
+		.table th {
+			background-color: #4CAF50;
+			color: white;
+			text-transform: uppercase;
+		}
+	
+		.table tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+	
+		.table tr:hover {
+			background-color: #f1f1f1;
+		}
+	
+		.table td a {
+			text-decoration: none;
+			color: #3498db;
+			font-weight: bold;
+			padding: 5px 10px;
+			border-radius: 5px;
+			background-color: #e1f5fe;
+		}
+	
+		.table td a:hover {
+			background-color: #81d4fa;
+		}
+	
+		.no-messages {
+			font-size: 18px;
+			color: #777;
+			padding: 20px;
+		}
+	
+		footer {
+			text-align: center;
+			padding: 20px;
+			background-color: #f1f1f1;
+			margin-top: 30px;
+		}
+	
+		center {
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 40px 0;
+		}
+	
+		@media (max-width: 768px) {
+			.container {
+				width: 95%;
+			}
+	
+			.table th, .table td {
+				padding: 10px;
+			}
+	
+			.table td a {
+				padding: 5px;
+			}
+		}
+	</style>
+	
+</style>
+<div class="container">
+    <center>
+        <br>
+        <h1>Messages</h1><br>
+        {% if data['msgs'] %}
+        <table class="table">
+            <tr>
+                <th>Sl.No</th>
+                <th>User Name</th>
+                <th></th>
+                
+            </tr>
+            {% for row in data['msgs'] %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ row['fname'] }} {{ row['lname'] }}</td>
+                
+                <td><a href="user_chat_message?cid={{row['chef_id']}}">Chat</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <div class="no-messages">
+            <h3>You don't have messages yet</h3>
+        </div>
+        <br>
+        {% endif %}
+    </center>
+</div>
+
+{% include 'footer.html' %}

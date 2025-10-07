@@ -1,0 +1,338 @@
+{% include 'user_header.html' %}
+<style>
+    body {
+        background-color: #f0f2f5;
+        font-family: 'Montserrat';
+        
+    
+    }
+     /* Style for the star rating */
+     .star-rating {
+        font-size: 24px; /* Adjust size of stars */
+        cursor: pointer;
+    }
+    
+    .star {
+        color: #ccc; /* Default color of stars */
+        transition: color 0.3s ease;
+    }
+    
+    .star.selected {
+        color: #ffc107; /* Highlighted star color */
+    }
+    .content-preview {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Show only 2 lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;    
+    }
+    .post-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+    .post-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .post-header img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+    }
+    .post-header .post-info {
+        font-weight: bold;
+    }
+    .post-header .post-date {
+        color: #777;
+        font-size: 12px;
+    }
+    .post-content img,
+    .post-content video {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    .post-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    .post-content p {
+        font-size: 14px;
+    }
+    .ingredients {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .ingredients h4 {
+        margin-bottom: 10px;
+    }
+    .details {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .details h4 {
+        margin-bottom: 10px;
+    }
+    .comments {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .ratings {
+        font-size: 14px;
+        color: #ffc107;
+        margin-top: 10px;
+    }
+    .media-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .media-item.image {
+        flex: 1;
+        margin-right: 10px;
+    }
+    
+    .media-item.video {
+        flex: 1;
+    }
+</style>
+
+<pre>
+
+
+
+
+</pre>
+<div class="container my-4" style="margin-top: 50px;">
+    <h1 style="padding-left: 30%;">Blog</h1>
+    {% for recipe in data.view %}
+    <div class="row">
+        <!-- Left Column: Recipe Details -->
+        <div class="col-md-8">
+            <div class="post-container">
+                <!-- Post Header (Chef Information) -->
+                <div class="post-header">
+                    <div>
+                        <div class="post-info">{{ recipe.fname }} {{ recipe.lname }}</div>
+                        <div class="post-date">{{ recipe.date }}</div>
+                    </div>
+                </div>
+
+                <!-- Post Content (Recipe Details, Image, and Video) -->
+                <div class="post-content">
+                    <h3>{{ recipe.receipe }}</h3>
+                    <!-- Image and Video -->
+                    <div class="media-container d-flex justify-content-between">
+                        <div class="media-item image">
+                            <img src="{{ recipe.image.url }}" alt="Recipe Image" class="img-fluid" style="width: 480px; height: 480px;">
+                        </div>
+                        <!-- Uncomment if you have video support -->
+                        <!--
+                        <div class="media-item video">
+                            <video controls class="video-fluid" style="width: 150px; height: 150px;">
+                                <source src="{{ recipe.video.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        -->
+                    </div>
+
+                    <!-- Ingredients Section -->
+                    <div class="ingredients">
+                        <h4>Ingredients:</h4>
+                        <p class="content-preview">{{ recipe.incridients }} {{ recipe.details }}</p>
+                        <button type="button" class="btn btn-link read-more" data-bs-toggle="modal" data-bs-target="#contentModal" data-content="{{ recipe.incridients }} {{ recipe.details }}">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+                 <!--  <div class="details">
+                        <h4>Details:</h4>
+                        <p class="content-preview">{{ recipe.details }}</p>
+                        <button type="button" class="btn btn-link read-more" data-bs-toggle="modal" data-bs-target="#contentModal" data-content="{{ recipe.details }}">
+                            Read More
+                        </button>
+                    </div>  -->
+
+    <!-- Bootstrap Modal to Display Full Content -->
+    <div class="modal fade" id="contentModal" tabindex="-1" aria-labelledby="contentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contentModalLabel">Read More</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                    <!-- Full content will be displayed here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+                    <div style="padding-left: 70%;">
+                    <a href="user_chat_message?cid={{recipe['login_id']}}" class="btn btn-primary chat-btn">
+                        Chat <i class="fas fa-comments"></i>
+                    </a>
+                </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Ratings and Reviews -->
+        <div class="col-md-4">
+            <!-- Button to trigger the modal -->
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#reviewsModal{{ recipe.receipe_id }}">
+                View All Comments
+            </button>
+
+            <!-- Ratings Section -->
+            <div class="ratings">
+                {% if recipe.avg_rating|float > 0 %}
+                    Average Rating: {{ recipe.avg_rating|round(2) }} 
+                    <div>
+                        {% for i in range(recipe.avg_rating|round(0)|int) %}
+                        ★
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    No rating available.
+                {% endif %}
+            </div>
+
+            <!-- Rating and Review Submission Form -->
+            <div class="rating-form mt-4">
+                <h4>Rate this Recipe:</h4>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="rating">Choose a rating:</label>
+                        <div class="star-rating">
+                            <!-- Star icons to represent the rating -->
+                            {% for i in range(1, 6) %}
+                                <span class="star" data-value="{{ i }}">&#9733;</span>
+                            {% endfor %}
+                        </div>
+                        <!-- Hidden input field to store the selected rating -->
+                        <input type="hidden" name="rating" id="rating-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="review">Leave a Comment:</label>
+                        <textarea id="review" name="review" class="form-control" rows="3" placeholder="Write your comments here..."></textarea>
+                    </div>
+                    <input type="hidden" name="recipe_id" value="{{ recipe.receipe_id }}">
+                    <input type="submit" name="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for showing reviews -->
+    <div class="modal fade" id="reviewsModal{{ recipe.receipe_id }}" tabindex="-1" role="dialog" aria-labelledby="reviewsModalLabel{{ recipe.receipe_id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewsModalLabel{{ recipe.receipe_id }}">Reviews for {{ recipe.receipe }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% for review in data['reviews'] %}
+                        {% if review.receipe_id == recipe.receipe_id %}
+                            <!-- <p><strong>User {{ review.ratedby_id }}:</strong> {{ review.review }}</p> -->
+                            <p><strong></strong> {{ review.review }}</p>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{% include 'footer.html' %}
+<script>
+    // JavaScript to handle the star rating interaction
+    document.addEventListener('DOMContentLoaded', function() {
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('rating-input');
+    
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                // Get the rating value from the clicked star
+                const rating = this.getAttribute('data-value');
+                ratingInput.value = rating;
+    
+                // Highlight the selected stars
+                stars.forEach(s => {
+                    if (s.getAttribute('data-value') <= rating) {
+                        s.classList.add('selected');
+                    } else {
+                        s.classList.remove('selected');
+                    }
+                });
+            });
+        });
+    });
+    </script>
+    <!-- JavaScript to Populate Modal Content -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const contentModal = document.getElementById('contentModal');
+        const modalContent = document.getElementById('modalContent');
+    
+        contentModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const fullContent = button.getAttribute('data-content');
+            modalContent.textContent = fullContent;
+        });
+    });
+    </script>
+    <style>
+        /* Style for the star rating */
+        .star-rating {
+            font-size: 24px; /* Adjust size of stars */
+            cursor: pointer;
+        }
+        
+        .star {
+            color: #ccc; /* Default color of stars */
+            transition: color 0.3s ease;
+        }
+        
+        .star.selected {
+            color: #ffc107; /* Highlighted star color */
+        }
+        </style>
